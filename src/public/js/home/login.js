@@ -26,9 +26,9 @@ function login(){
     })
 
     .then((res) =>  res.json())
-    .then((res)=> {
+    .then((res)=> { //로그인 성공시 글목록으로 이동
         if(res.success){
-            location.href = "/";
+            location.href = "/board/page";
         }
         else{
             alert(res.msg);

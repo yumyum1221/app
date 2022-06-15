@@ -8,7 +8,7 @@ const ctrl = require("./home.ctrl");
 router.get("/", ctrl.output.home);
 router.get("/login", ctrl.output.login);
 router.get("/register", ctrl.output.register);
-//local:3000/register로 들어가면 register함수가 실행됨
+//local:8080/register로 들어가면 register함수가 실행됨
 
 
 router.post("/login",ctrl.process.login);

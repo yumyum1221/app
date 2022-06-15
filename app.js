@@ -1,5 +1,5 @@
+//유정
 "use strict";
-
 
 const express = require("express");
 const bodyParser = require("body-parser")
@@ -20,3 +20,39 @@ const home = require("./src/routes/home");
 app.use("/", home); //use -> 미들웨어를 등록해주는 메서드
 
 module.exports = app; //앱을 내보내줌
+
+
+//혜린
+var createError = require('http-errors');
+var path = require('path');
+var cookieParser = require('cookie-parser');
+var logger = require('morgan');
+
+var multer = require('multer');
+var fs = require('fs');
+var cors = require('cors');
+
+var indexRouter = require('../app/src/routes/home/index');
+var boardRouter = require('../app/src/routes/home/board');
+
+
+//클라이언트에서 ajax로 요청했을 때 CORS(다중서버접속)지원
+app.use(cors());
+
+
+
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+app.use('/img', express.static(path.join(__dirname, '../upload')));
+app.use('/upload', express.static('upload'))
+
+app.use('/board', boardRouter);
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+    next(createError(404));
+  });
+
+module.exports = app;
